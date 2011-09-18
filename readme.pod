@@ -1,0 +1,79 @@
+=head1 目标
+将pod的格式进行扩展，使之成为强大的帮助文档制作平台。
+实现，跳转在VIM环境中，制作POD格式的帮助文档。方便查询。
+并能转换成POD带标签，chm 带查询，制作帮助系统。
+使用数据结构表现对象的内部构造。
+vim help => pod
+tag 在POD中如何实现呢？
+L<POD>,
+'L<=head1 I<Heading text>>',
+=head1 big5',
+'E<lt>',
+'E<gt>',
+'C<BE<lt>textE<gt>>',
+'C<LE<lt>text|...E<gt>>',
+'C<$a E<lt>=E<gt> $b>',
+'C<< $a <=> $b >>',
+'C<<< $a <=> $b >>>',
+'C<<<<  $a <=> $b     >>>>',
+'C<$a E<lt>=E<gt> $b>',
+'L<Pod::HTML2Pod|Pod::HTML2Pod>',
+'L<< >> >>',
+'The I<SantaMarE<iacuate>a> left port alreay',
+'B<touch> S<B<-t> I<time>> I<file>',
+'B<1B<2B<3B<t>>>>',
+如何增加一个图标工具栏呢？
+以下是系统内置的图标和具体含义，默认只用了20个，一共有31个
+有11个可以用。选几个可用于切换颜色方案，语法高亮方案，语言，模式切换，切换类的
+
+号  名字		正常定义的操作  ~
+1.00  New			打开新窗口
+！01  Open		浏览要在当前窗口打开的文件
+！02  Save		把缓冲区写回文件
+！03  Undo		撤销上次改变
+！04  Redo		重做上次撤销的改变
+！05  Cut			删除选择的文本到剪贴板
+！06  Copy		复制选择的文本到剪贴板
+！07  Paste		从剪贴板粘贴文本
+！08  Print		打印当前缓冲区
+！09  Help		打开缓冲区，显示 Vim 的内建帮助
+2.10  Find		开始搜索命令
+！11  SaveAll		把所有修改过的缓冲区写回文件
+！12  SaveSesn		把当前的情况写到会话文件
+3.13  NewSesn		创建一个新的会话文件
+！14  LoadSesn		载入会话文件
+！15  RunScript		浏览文件，并作为 Vim 脚本执行
+！16  Replace		执行 substitute 命令，给出提示
+17  WinClose		关闭当前窗口
+18  WinMax		使得当前窗口使用尽量多行
+19  WinMin		使得当前窗口使用尽量少行
+20  WinSplit		分割当前窗口
+21  Shell		启动外壳
+！22  FindPrev		反向再次搜索
+！23  FindNext		正向再次搜索
+！24  FindHelp		提示关键字，搜索相关帮助
+！25  Make		运行 make，跳到第一个错误
+！26  TagJump		跳转至光标所在的标签
+！27  RunCtags		运行 Ctags，为当前目录的文件构造标签
+28  WinVSplit		垂直分割当前窗口
+29  WinMaxWidth		使得当前窗口使用尽量多列
+30  WinMinWidth		使得当前窗口使用尽量少列
+:an 1.05 ToolBar.New           :tabnew<CR>
+:tmenu ToolBar.New             New file
+增加其他的图标，看看效果
+:an 1.41 ToolBar.WinClose :
+:tmenu   ToolBar.WinClose   WinClose 
+:an 1.42 ToolBar.WinMax   :
+:tmenu   ToolBar.WinMax   WinMax
+:an 1.43 ToolBar.WinSplit WinSplit
+:an 1.44 ToolBar.WinVSplit WinVSplit
+:an 1.45 ToolBar.WinMaxWidth WinMaxWidth
+:an 1.46 ToolBar.WinMinWidth WinMinWidth
+:an 1.47 ToolBar.Shell Shell
+:an 1.48 ToolBar.NewSesn NewSesn
+
+如何循环设置一个命令
+文本处理的能力是Perl, 文本表现得能力是Vim 
+把vim的脚本也当成一种文本格式。使用Perl来生成
+
+如果perl脚本可以执行，那么就可以直接输出perl脚本C:\Perl512\site\bin;C:\Perl512\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem
